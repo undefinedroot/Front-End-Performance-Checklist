@@ -29,9 +29,10 @@
 <p align="center">
   <a href="https://github.com/JohnsenZhou/Front-End-Performance-Checklist">🇨🇳</a>
   <a href="https://github.com/WilliamDASILVA/Front-End-Performance-Checklist">🇫🇷</a>
-  <a href="https://github.com/ParkSB/Front-End-Performance-Checklist">🇰🇷</a>  
+  <a href="https://github.com/ParkSB/Front-End-Performance-Checklist">🇰🇷</a>
   <a href="https://github.com/fernandofawkes/Front-End-Performance-Checklist">🇵🇹</a>
   <a href="https://github.com/lex111/Front-End-Performance-Checklist">🇷🇺</a>
+  <a href="https://github.com/GameWith/Front-End-Performance-Checklist">🇯🇵</a>
 </p>
 
 <p align="center">
@@ -91,7 +92,7 @@ List of the tools you can use to test or monitor your website or application:
  * 🛠 [DebugBear - Monitor website performance and Lighthouse scores](https://www.debugbear.com/)
  * 🛠 [packtracker.io - Check your webpack bundle size on every pull request.](https://packtracker.io/)
  * 🛠 [Exthouse - Analyze the impact of a browser extension on web performance](https://github.com/treosh/exthouse)
- 
+
 ### References
 
  * 📹 [The Cost Of JavaScript - YouTube](https://www.youtube.com/watch?v=_bzqF05xsC4) ([text version](https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4))
@@ -115,7 +116,7 @@ List of the tools you can use to test or monitor your website or application:
 - [ ] **Minified HTML:** ![medium] The HTML code is minified, comments, white spaces and new lines are removed from production files.
 
     *Why:*
-    > Removing all unnecessary spaces, comments and break will reduce the size of your HTML and speed up your site's page load times and obviously lighten the download for your user.
+    > Removing all unnecessary spaces, comments and attributes will reduce the size of your HTML and speed up your site's page load times and obviously lighten the download for your user.
 
     *How:*
     > Most of the frameworks have plugins to facilitate the minification of the webpages. You can use a bunch of NPM modules that can do the job for you automatically.
@@ -123,38 +124,6 @@ List of the tools you can use to test or monitor your website or application:
     * 🛠 [HTML minifier | Minify Code](http://minifycode.com/html-minifier/)
     * 🛠 [Online HTML Compressor](http://refresh-sf.com)
     * 📖 [Experimenting with HTML minifier — Perfection Kills](http://perfectionkills.com/experimenting-with-html-minifier/#use_short_doctype)
-
-- [ ] **Remove unnecessary comments:** ![low] Ensure that comments are removed from your pages.
-
-    *Why:*
-    > Comments are not really useful for the user and should be removed from production files. One case where you want to keep comments could be if you need to keep the origin for a library.
-
-    *How:*
-    > ⁃ Most of the time, comments can be removed using an HTML minify plugin.
-
- * 🛠 [remove-html-comments - npm](https://www.npmjs.com/package/remove-html-comments)
-
-- [ ] **Remove unnecessary attributes:** ![low] Type attributes like `type="text/javascript"` or `type="text/css"` are not required anymore and should be removed.
-
-    ```html
-    <!-- Before HTML5 -->
-    <script type="text/javascript">
-        // JavaScript code
-    </script>
-
-    <!-- Today -->
-    <script>
-        // JavaScript code
-    </script>
-    ```
-
-    *Why:*
-    > Type attributes are not necessary as HTML5 implies text/css and text/javascript as defaults. Unused code should be removed when not used by your website or app as they add more weight to your pages.
-
-    *How:*
-    > ⁃ Ensure that all your `<link>` and `<script>` tags don't have any type attribute.
-
-    * 📖 [The Script Tag | CSS-Tricks](https://css-tricks.com/the-script-tag/)
    
 - [ ] **Place CSS tags always before JavaScript tags:** ![high] Ensure that your CSS is always loaded before having JavaScript code.
 
@@ -183,7 +152,7 @@ List of the tools you can use to test or monitor your website or application:
 - [ ] **Pre-load optimization with prefetch, dns-prefetch and prerender:** ![low] Popular browsers can use directive on `<link>` tag and "rel" attribute with certain keywords to pre-load specific URLs.
 
     *Why:*
-    > Prefetching allows a browser to silently fetch the necessary resources needed to display content that a user might access in the near future. The browser is able to store these resources in its cache and speed up the way web pages load when they are using different domains for page resources. When a web page has finished loading and the idle time has passed, the browser begins downloading other resources. When a user go in a particular link (already prefetched), the content will be instantly served. 
+    > Prefetching allows a browser to silently fetch the necessary resources needed to display content that a user might access in the near future. The browser is able to store these resources in its cache and speed up the way web pages load when they are using different domains for page resources. When a web page has finished loading and the idle time has passed, the browser begins downloading other resources. When a user go in a particular link (already prefetched), the content will be instantly served.
 
     *How:*
     > ⁃ Ensure that `<link>` is in your `<head>` section.
@@ -250,16 +219,6 @@ List of the tools you can use to test or monitor your website or application:
     * 📖 [Example of preload CSS using loadCSS](https://gist.github.com/thedaviddias/c24763b82b9991e53928e66a0bafc9bf)
     * 📖 [Preloading content with rel="preload"](https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content)
     * 📖 [Preload: What Is It Good For? — Smashing Magazine](https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/)
-
-- [ ] **Length of CSS classes:** ![low] The length of your classes can have an (slight) impact on your HTML and CSS files (eventually).
-
-    *Why:*
-    > Even performance impacts can be disputable, taking a decision on a naming strategy regarding your project can have a substantial impact on the maintainability of your stylesheets. If you are using BEM, in some cases, you can end up with classes having more characters than needed. It's always important to choose wisely your names and namespaces.
-
-    *How:*
-    > Setting a limit in terms of number of characters could be interesting for some people, but ensuring that you broke down your website in components can help to reduce the amount of classes (and declarations) and the length of your classes.
-
-    * 🛠 [long vs short class · jsPerf](https://jsperf.com/long-vs-short-class)
 
 - [ ] **Unused CSS:** ![medium] Remove unused CSS selectors.
 
@@ -435,6 +394,7 @@ List of the tools you can use to test or monitor your website or application:
 
     * 🛠 [verlok/lazyload: GitHub](https://github.com/verlok/lazyload)
     * 🛠 [aFarkas/lazysizes: GitHub](https://github.com/aFarkas/lazysizes/)
+    * 🛠 [mfranzke/loading-attribute-polyfill: GitHub](https://github.com/mfranzke/loading-attribute-polyfill/)
     * 📖 [Lazy Loading Images and Video  |  Web Fundamentals  |  Google Developers](https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/)
     * 📖 [5 Brilliant Ways to Lazy Load Images For Faster Page Loads - Dynamic Drive Blog](http://blog.dynamicdrive.com/5-brilliant-ways-to-lazy-load-images-for-faster-page-loads/)
 
@@ -549,7 +509,7 @@ List of the tools you can use to test or monitor your website or application:
 
 ![server-side]
 
-- [ ] **Your website is using HTTPS:** ![high] 
+- [ ] **Your website is using HTTPS:** ![high]
 
     *Why:*
     > HTTPS is not only for ecommerce websites, but for all websites that are exchanging data. Data shared by a user or data shared to an external entity. Modern browsers today limit functionalities for sites that are not secure. For example: geolocation, push notifications and service workers don't work if your instance is not using HTTPS. And today is much more easy to setup a project with an SSL certificate than it was before (and for free, thanks to [Let's Encrypt](https://letsencrypt.org/)).
@@ -641,6 +601,7 @@ List of the tools you can use to test or monitor your website or application:
  * 📖 [Optimizing Performance - React](https://reactjs.org/docs/optimizing-performance.html)
  * 📖 [React image manipulation | Cloudinary](https://cloudinary.com/documentation/react_image_manipulation)
  * 📖 [Debugging React performance with React 16 and Chrome Devtools.](https://building.calibreapp.com/debugging-react-performance-with-react-16-and-chrome-devtools-c90698a522ad)
+  * 📖 [Build Performant - React](https://web.dev/react/)
 
 ### Vue
  * 📖 [Vue - Useful Links|Style Guide and Performance](https://learn-vuejs.github.io/vue-patterns/useful-links/)
@@ -675,6 +636,8 @@ The Front-End Performance Checklist wants to also be available in other language
 * 🇰🇷 Korean: [ParkSB/Front-End-Performance-Checklist](https://github.com/ParkSB/Front-End-Performance-Checklist)
 * 🇪🇸 Spanish: [dagerzuga/Front-End-Performance-Checklist](https://github.com/dagerzuga/Front-End-Performance-Checklist)
 * 🇻🇮 Vietnamese : [huynhan147/Front-End-Performance-Checklist](https://github.com/huynhan147/FrontEnd-Performance-Checklist)
+* 🇯🇵 Japanese: [GameWith/Front-End-Performance-Checklist](https://github.com/GameWith/Front-End-Performance-Checklist)
+* 🇵🇱 Polish: [mbiesiad/Front-End-Performance-Checklist](https://github.com/mbiesiad/Front-End-Performance-Checklist)
 
 ## Contributing
 
@@ -738,6 +701,6 @@ All icons are provided by [Icons8](https://icons8.com/)
 [javascript]: images/javascript.png
 [server-side]: images/server-side.png
 
-[low]: https://front-end-checklist.now.sh/low.svg
-[medium]: https://front-end-checklist.now.sh/medium.svg
-[high]: https://front-end-checklist.now.sh/high.svg
+[low]: images/priority/low.svg
+[medium]: images/priority/medium.svg
+[high]: images/priority/high.svg
